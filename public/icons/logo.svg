@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+<radialGradient id="bg" cx="50%" cy="50%" r="50%">
+<stop offset="0%" stop-color="#2d3748"/>
+<stop offset="100%" stop-color="#1a202c"/>
+</radialGradient>
+<radialGradient id="glow" cx="50%" cy="50%" r="40%">
+<stop offset="0%" stop-color="#c9a96e" stop-opacity="0.15"/>
+<stop offset="100%" stop-color="#1a202c" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#d4a574"/>
+<stop offset="50%" stop-color="#c9a96e"/>
+<stop offset="100%" stop-color="#b8860b"/>
+</linearGradient>
+<linearGradient id="gold2" x1="100%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#c9a96e"/>
+<stop offset="100%" stop-color="#96722e"/>
+</linearGradient>
+<linearGradient id="gold3" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#e8c888"/>
+<stop offset="100%" stop-color="#b8860b"/>
+</linearGradient>
+</defs>
+<!-- Background -->
+<rect width="512" height="512" rx="64" fill="url(#bg)"/>
+<rect width="512" height="512" rx="64" fill="url(#glow)"/>
+<!-- Outer decorative ring -->
+<circle cx="256" cy="256" r="220" fill="none" stroke="url(#gold2)" stroke-width="1.5" opacity="0.4"/>
+<circle cx="256" cy="256" r="210" fill="none" stroke="url(#gold2)" stroke-width="0.5" opacity="0.3"/>
+<!-- 8 small outer stars -->
+<g fill="url(#gold2)" opacity="0.5">
+<g id="outer-star">
+<path d="M256 36l4 12-4 4-4-4z M256 36l-4 12 4 4 4-4z" transform="rotate(0,256,256)"/>
+</g>
+</g>
+<g fill="url(#gold1)" opacity="0.45">
+<path d="M256 44l3.5 8h-7z" transform="rotate(0,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(45,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(90,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(135,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(180,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(225,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(270,256,256)"/>
+<path d="M256 44l3.5 8h-7z" transform="rotate(315,256,256)"/>
+</g>
+<!-- 8 medium stars at corners -->
+<g fill="url(#gold1)" opacity="0.35">
+<path d="M256 60l5 14-5 5-5-5z M256 60l-5 14 5 5 5-5z" transform="rotate(22.5,256,256)"/>
+</g>
+<!-- 30-petal rosette ring -->
+<g fill="url(#gold1)" opacity="0.7">
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(0,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(12,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(24,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(36,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(48,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(60,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(72,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(84,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(96,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(108,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(120,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(132,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(144,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(156,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(168,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(180,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(192,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(204,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(216,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(228,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(240,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(252,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(264,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(276,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(288,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(300,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(312,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(324,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(336,256,256)"/>
+<path d="M256 100 Q264 150 256 170 Q248 150 256 100Z" transform="rotate(348,256,256)"/>
+</g>
+<!-- Inner rosette ring (smaller petals, offset) -->
+<g fill="url(#gold3)" opacity="0.5">
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(6,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(18,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(30,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(42,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(54,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(66,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(78,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(90,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(102,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(114,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(126,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(138,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(150,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(162,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(174,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(186,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(198,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(210,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(222,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(234,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(246,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(258,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(270,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(282,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(294,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(306,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(318,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(330,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(342,256,256)"/>
+<path d="M256 140 Q261 170 256 185 Q251 170 256 140Z" transform="rotate(354,256,256)"/>
+</g>
+<!-- Central 8-pointed star -->
+<g transform="translate(256,256)">
+<!-- Outer 8-pointed star -->
+<polygon points="0,-90 18,-18 90,0 18,18 0,90 -18,18 -90,0 -18,-18" fill="url(#gold1)" opacity="0.85"/>
+<!-- Rotated square overlay -->
+<rect x="-52" y="-52" width="104" height="104" transform="rotate(45)" fill="url(#gold3)" opacity="0.6"/>
+<!-- Inner 8-pointed star -->
+<polygon points="0,-60 12,-12 60,0 12,12 0,60 -12,12 -60,0 -12,-12" fill="url(#gold1)" opacity="0.9"/>
+<!-- Inner rotated square -->
+<rect x="-34" y="-34" width="68" height="68" transform="rotate(45)" fill="#1e293b" opacity="0.5"/>
+<!-- Innermost star -->
+<polygon points="0,-38 8,-8 38,0 8,8 0,38 -8,8 -38,0 -8,-8" fill="url(#gold3)" opacity="0.95"/>
+<!-- Center circle -->
+<circle r="16" fill="#1e293b" opacity="0.6"/>
+<circle r="12" fill="url(#gold1)" opacity="0.8"/>
+<circle r="6" fill="#1e293b" opacity="0.7"/>
+<circle r="3" fill="#c9a96e"/>
+</g>
+<!-- Thin decorative ring between rosette and star -->
+<circle cx="256" cy="256" r="95" fill="none" stroke="url(#gold1)" stroke-width="1" opacity="0.6"/>
+<circle cx="256" cy="256" r="168" fill="none" stroke="url(#gold1)" stroke-width="0.8" opacity="0.4"/>
+<!-- 16 tiny dots around middle ring -->
+<g fill="#c9a96e" opacity="0.6">
+<circle cx="256" cy="88" r="2.5" transform="rotate(0,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(22.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(45,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(67.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(90,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(112.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(135,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(157.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(180,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(202.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(225,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(247.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(270,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(292.5,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(315,256,256)"/>
+<circle cx="256" cy="88" r="2.5" transform="rotate(337.5,256,256)"/>
+</g>
+<!-- 8 medium 8-pointed stars around the rosette -->
+<g opacity="0.4">
+<g transform="translate(256,76)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(383.3,128.7)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(436,256)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(383.3,383.3)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(256,436)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(128.7,383.3)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(76,256)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+<g transform="translate(128.7,128.7)"><polygon points="0,-10 2.5,-2.5 10,0 2.5,2.5 0,10 -2.5,2.5 -10,0 -2.5,-2.5" fill="url(#gold1)"/></g>
+</g>
+</svg>

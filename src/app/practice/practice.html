@@ -1,0 +1,299 @@
+<section class="page" dir="rtl" lang="ar">
+  @if (selectedAyahNumber() !== null) {
+    <div class="popover-backdrop" (click)="closeAyahMenu($event)" aria-hidden="true"></div>
+  }
+
+  <header class="intro">
+    <h1>التسميع</h1>
+    <p>صفحة واحدة من المصحف. اختر آية لتقرأها أو تخفيها حتى نهاية الصفحة.</p>
+  </header>
+
+  <div class="toolbar" role="toolbar" aria-label="أدوات التسميع">
+    <div class="tool-group" role="group" aria-label="التحكم بالتلاوة">
+      <button type="button" (click)="pauseReading()" [disabled]="!player.isPlaying()">توقيف</button>
+      <button type="button" (click)="resumeReading()" [disabled]="!canResume()">متابعة</button>
+    </div>
+    <div class="tool-group" role="group" aria-label="تكرار التلاوة">
+      @for (repeatOption of repeats; track repeatOption.id) {
+        <button
+          type="button"
+          class="repeat-button"
+          [class.is-active]="player.repeat() === repeatOption.id"
+          [attr.aria-pressed]="player.repeat() === repeatOption.id"
+          (click)="chooseRepeat(repeatOption.id)"
+        >
+          {{ repeatOption.label }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="selector">
+    <div class="field">
+      <label for="surah-select">السورة</label>
+      <select id="surah-select" [value]="currentSurahNumber()" (change)="chooseSurah($event)">
+        @for (surah of surahOptions(); track surah.number) {
+          <option [value]="surah.number">
+            {{ toArabicDigits(surah.number) }}. {{ surah.name }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="reciter-select">القارئ</label>
+      <select id="reciter-select" [formField]="readerForm.edition">
+        @for (option of reciterOptions(); track option.identifier) {
+          <option [value]="option.identifier">{{ option.name }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <nav class="page-nav" aria-label="صفحات المصحف">
+    <button type="button" (click)="previousPage()" [disabled]="pageNumber() === 1">السابق</button>
+    <div class="field page-field">
+      <label for="page-number">الصفحة</label>
+      <input
+        id="page-number"
+        type="number"
+        [value]="pageNumber()"
+        [min]="1"
+        [max]="pageCount"
+        (change)="goToPage($event)"
+      />
+    </div>
+    <p>من {{ toArabicDigits(pageCount) }}</p>
+    <button type="button" (click)="nextPage()" [disabled]="pageNumber() === pageCount">
+      التالي
+    </button>
+  </nav>
+
+  @if (mushaf.isLoading() && !currentPage()) {
+    <p role="status" class="loading-state">جارٍ تحميل الصفحة...</p>
+  } @else if (mushaf.error() && !currentPage()) {
+    <div class="error-state" role="alert">
+      <p>تعذر تحميل الصفحة.</p>
+      <button type="button" (click)="reloadPage()">إعادة المحاولة</button>
+    </div>
+  }
+
+  @if (currentPage(); as page) {
+    <article class="mushaf" [attr.aria-label]="'الصفحة ' + page.number">
+      <header class="mushaf-header">
+        <span class="mushaf-header-surah">{{ pageSurahName() }}</span>
+        <span class="mushaf-header-juz">{{ pageJuzName() }}</span>
+      </header>
+
+      <div class="mushaf-content">
+        @for (line of mushafLines(); track line.number) {
+          @if (line.kind === 'surah') {
+            <h2 class="surah-name">{{ line.surahName }}</h2>
+          } @else if (line.kind === 'bismillah') {
+            <p class="bismillah">{{ line.bismillah }}</p>
+          } @else {
+            <div class="mushaf-line">
+              @for (segment of line.segments; track segment.ayahNumber) {
+                <div class="segment-container" [class.is-selected]="segment.selected">
+                  <button
+                    type="button"
+                    class="segment"
+                    [class.is-selected]="segment.selected"
+                    [class.is-playing]="segment.playing"
+                    [class.is-hidden]="segment.hidden"
+                    [class.is-memorized]="segment.memorized"
+                    [attr.aria-pressed]="segment.selected"
+                    [attr.aria-label]="
+                      segment.hidden ? 'الآية ' + segment.numberInSurah + ' مخفية' : null
+                    "
+                    (click)="selectAyah(segment.ayahNumber, line.number)"
+                  >
+                    @if (segment.hidden) {
+                      <span class="mask">مخفية</span>
+                    } @else {
+                      @for (token of segment.words; track $index) {
+                        <span class="uthmani">{{ token }}</span>
+                      }
+                    }
+                    @if (segment.showMarker) {
+                      <span class="marker">{{ toArabicDigits(segment.numberInSurah) }}</span>
+                    }
+                  </button>
+
+                  @if (selectedAyah(); as ayah) {
+                    @if (segment.selected && isTargetSegment(segment.ayahNumber, line.number)) {
+                      <div
+                        class="ayah-popover"
+                        [class.is-flipped]="line.number <= 4"
+                        role="dialog"
+                        aria-label="خيارات الآية"
+                      >
+                        <div class="popover-header">
+                          <span class="popover-title">آية {{ toArabicDigits(ayah.numberInSurah) }}</span>
+                          <button
+                            type="button"
+                            class="popover-close-btn"
+                            (click)="closeAyahMenu($event)"
+                            aria-label="إغلاق"
+                          >
+                            ✕
+                          </button>
+                        </div>
+
+                        <div class="popover-quick-actions">
+                          <button
+                            type="button"
+                            class="popover-action-btn"
+                            (click)="readSelectedAyah()"
+                            title="اقرأ الآية"
+                          >
+                            <span class="action-icon">▶</span>
+                            <span>تلاوة</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="popover-action-btn"
+                            (click)="readToEnd()"
+                            title="اقرأ حتى نهاية الصفحة"
+                          >
+                            <span class="action-icon">⏩</span>
+                            <span>للنهاية</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="popover-action-btn"
+                            (click)="showTafseer(ayah)"
+                            title="تفسير الآية"
+                          >
+                            <span class="action-icon">📖</span>
+                            <span>تفسير</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="popover-action-btn"
+                            (click)="hideToEnd()"
+                            title="إخفاء أو إظهار"
+                          >
+                            <span class="action-icon">👁️</span>
+                            <span>{{ ayah.hidden ? 'إظهار' : 'إخفاء' }}</span>
+                          </button>
+                          <button
+                            type="button"
+                            class="popover-action-btn"
+                            [class.is-memorized]="ayah.memorized"
+                            (click)="toggleMemorized()"
+                            title="تعليم كمحفوظة"
+                          >
+                            <span class="action-icon">{{ ayah.memorized ? '★' : '☆' }}</span>
+                            <span>{{ ayah.memorized ? 'محفوظة' : 'حفظ' }}</span>
+                          </button>
+                        </div>
+
+                        <div class="popover-select-wrap">
+                          <label for="ayah-actions" class="sr-only">خيارات الآية {{ ayah.numberInSurah }}</label>
+                          <select id="ayah-actions" class="popover-select" (change)="chooseAyahAction($event)">
+                            <option value="" disabled selected>قائمة الخيارات...</option>
+                            <option value="read">▶ اقرأ الآية</option>
+                            <option value="read-to-end">⏩ اقرأ حتى نهاية الصفحة</option>
+                            <option value="tafseer">📖 تفسير الآية</option>
+                            <option value="hide">
+                              {{ ayah.hidden ? '👁️ أظهر حتى نهاية الصفحة' : '👁️ أخفِ حتى نهاية الصفحة' }}
+                            </option>
+                            <option value="memorized">
+                              {{ ayah.memorized ? '★ محفوظة' : '☆ تعليم كمحفوظة' }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    }
+                  }
+                </div>
+              }
+            </div>
+          }
+        }
+      </div>
+
+      <footer class="mushaf-footer">
+        <span class="mushaf-page-badge">{{ toArabicDigits(page.number) }}</span>
+      </footer>
+    </article>
+  }
+
+  @if (activeTafseerAyah(); as ayah) {
+    <div class="tafseer-backdrop" (click)="closeTafseer()" aria-hidden="true"></div>
+    <dialog
+      class="tafseer-dialog"
+      open
+      aria-modal="true"
+      [attr.aria-label]="'تفسير الآية ' + ayah.numberInSurah + ' من ' + ayah.surahName"
+    >
+      <div class="tafseer-header">
+        <div class="tafseer-title-wrap">
+          <span class="tafseer-icon">📖</span>
+          <h2 class="tafseer-title">
+            تفسير الآية {{ toArabicDigits(ayah.numberInSurah) }} — {{ ayah.surahName }}
+          </h2>
+        </div>
+        <button
+          type="button"
+          class="tafseer-close-btn"
+          (click)="closeTafseer()"
+          aria-label="إغلاق التفسير"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="tafseer-ayah-box">
+        <p class="tafseer-ayah-text uthmani">{{ ayah.text }}</p>
+        <span class="marker">{{ toArabicDigits(ayah.numberInSurah) }}</span>
+      </div>
+
+      <div class="tafseer-controls">
+        <label for="tafseer-edition-select">اختر كتاب التفسير:</label>
+        <select
+          id="tafseer-edition-select"
+          [value]="selectedTafseerEdition()"
+          (change)="changeTafseerEdition($event)"
+        >
+          @for (edition of tafseerEditions; track edition.identifier) {
+            <option [value]="edition.identifier">{{ edition.name }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="tafseer-body">
+        @if (tafseerResource.isLoading()) {
+          <div class="tafseer-loading">
+            <span class="tafseer-spinner" aria-hidden="true"></span>
+            <p>جارٍ تحميل التفسير...</p>
+          </div>
+        } @else if (tafseerResource.error()) {
+          <div class="tafseer-error" role="alert">
+            <p>تعذر تحميل التفسير في الوقت الحالي.</p>
+            <button type="button" (click)="tafseerResource.reload()">إعادة المحاولة</button>
+          </div>
+        } @else if (tafseerResource.value(); as tafseer) {
+          <div class="tafseer-text-content">
+            <p class="tafseer-text">{{ tafseer.text }}</p>
+            <footer class="tafseer-source">المصدر: {{ tafseer.editionName }}</footer>
+          </div>
+        }
+      </div>
+
+      <div class="tafseer-footer">
+        @if (tafseerResource.value(); as tafseer) {
+          <button
+            type="button"
+            class="tafseer-copy-btn"
+            (click)="copyTafseer(ayah.text, tafseer.text)"
+          >
+            {{ isCopied() ? '✓ تم النسخ' : '📋 نسخ التفسير' }}
+          </button>
+        }
+        <button type="button" class="tafseer-dismiss-btn" (click)="closeTafseer()">إغلاق</button>
+      </div>
+    </dialog>
+  }
+</section>

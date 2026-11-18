@@ -1,0 +1,193 @@
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Schedule Page — Islamic Theme
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+:host {
+  display: block;
+  min-height: 100dvh;
+  background: var(--color-bg-page);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+}
+
+.page {
+  width: min(100% - 2rem, 44rem);
+  margin-inline: auto;
+  padding-block: 1.5rem 3rem;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.intro h1 {
+  font-family: var(--font-arabic);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.intro p,
+.empty,
+.notices p {
+  margin-top: 0.5rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.notices,
+.summary,
+.plan-form,
+.plan-list {
+  margin-top: 1.25rem;
+}
+
+.summary,
+.plan-form,
+.plan-list,
+fieldset {
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+}
+
+.summary {
+  border-top: 3px solid var(--color-gold);
+}
+
+.summary-heading,
+.field-row,
+.plan-list li,
+fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.field,
+.field-row .field {
+  display: flex;
+  flex: 1 1 12rem;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+input,
+select,
+button {
+  min-height: 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.9rem;
+}
+
+button,
+select[multiple] {
+  padding-inline: 0.9rem;
+}
+
+button {
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--color-gold);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+button[type='submit'],
+.summary button,
+.notices button {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+button[type='submit']:hover,
+.summary button:hover,
+.notices button:hover {
+  background: var(--color-primary-light);
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.field-error {
+  color: var(--color-error);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.progress-track {
+  height: 0.5rem;
+  margin-top: 0.75rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(201, 169, 110, 0.15);
+}
+
+.progress-value {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold));
+  border-radius: 999px;
+}
+
+.plan-list ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.plan-list li {
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.plan-list h2 {
+  font-family: var(--font-arabic);
+  color: var(--color-primary);
+}
+
+select[multiple] {
+  min-height: 9rem;
+  width: 100%;
+}
+
+fieldset {
+  border-color: var(--color-border);
+}
+
+fieldset legend {
+  font-weight: 700;
+  color: var(--color-primary);
+  padding-inline: 0.25rem;
+}

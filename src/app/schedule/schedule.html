@@ -1,0 +1,178 @@
+<section class="page" dir="rtl" lang="ar">
+  <header class="intro">
+    <h1>خطة الدراسة</h1>
+    <p>حدد هدف الحفظ أو المراجعة، وأيام الأسبوع، ووقت التذكير.</p>
+  </header>
+
+  <section class="notices" aria-label="حالة التنبيه">
+    <p role="status">
+      @if (notifications.permission() === 'granted') {
+        التنبيهات مفعّلة
+      } @else if (notifications.permission() === 'denied') {
+        تم رفض إذن التنبيه
+      } @else {
+        التنبيهات غير مفعّلة
+      }
+    </p>
+    @if (notifications.isSchedulerActive()) {
+      <p>المجدول يعمل</p>
+    }
+    <button type="button" (click)="enableNotifications()">تفعيل التنبيه</button>
+  </section>
+
+  @if (activeView(); as progress) {
+    <section class="summary" aria-labelledby="progress-title">
+      <div class="summary-heading">
+        <h2 id="progress-title">{{ progress.title }}</h2>
+        <p>{{ progress.trackLabel }}</p>
+      </div>
+      <p>الجلسات المكتملة: {{ progress.completedSessions }}</p>
+      <p>الآيات المتبقية: {{ progress.remainingVerses }}</p>
+      <div
+        class="progress-track"
+        role="progressbar"
+        aria-label="تقدم الخطة النشطة"
+        [attr.aria-valuemin]="0"
+        [attr.aria-valuemax]="progress.totalVerses"
+        [attr.aria-valuenow]="progress.completedVerses"
+        [attr.aria-valuetext]="
+          progress.completedSessions + ' جلسات، ' + progress.remainingVerses + ' آيات متبقية'
+        "
+      >
+        <div class="progress-value" [style.width.%]="progress.percent"></div>
+      </div>
+      @switch (progress.sessionState) {
+        @case ('ready') {
+          <button type="button" (click)="completeToday()">إتمام جلسة اليوم</button>
+        }
+        @case ('completed') {
+          <p>تم تسجيل جلسة اليوم</p>
+        }
+        @case ('not-today') {
+          <p>اليوم ليس ضمن أيام هذه الخطة</p>
+        }
+      }
+    </section>
+  } @else {
+    <p class="empty">لا توجد خطة نشطة.</p>
+  }
+
+  <form class="plan-form" novalidate (submit)="$event.preventDefault(); savePlan()">
+    <div class="field">
+      <label for="plan-title">عنوان الخطة</label>
+      <input id="plan-title" type="text" [formField]="scheduleForm.title" />
+      @if (scheduleForm.title().touched()) {
+        @for (error of scheduleForm.title().errors(); track error.kind) {
+          <p class="field-error">{{ error.message }}</p>
+        }
+      }
+    </div>
+
+    <fieldset>
+      <legend>نوع المسار</legend>
+      <label>
+        <input type="radio" value="new-memorization" [formField]="scheduleForm.track" />
+        حفظ جديد (New Memorization)
+      </label>
+      <label>
+        <input type="radio" value="spaced-revision" [formField]="scheduleForm.track" />
+        مراجعة تراكمية (Spaced Revision)
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>الهدف</legend>
+      <label>
+        <input type="radio" value="surah" [formField]="scheduleForm.targetKind" />
+        سور
+      </label>
+      @if (juzReady()) {
+        <label>
+          <input type="radio" value="juz" [formField]="scheduleForm.targetKind" />
+          أجزاء
+        </label>
+      }
+      @if (surahList.error()) {
+        <p class="field-error" role="alert">تعذر تحميل قائمة السور.</p>
+      }
+      @if (draft().targetKind === 'surah') {
+        <label for="surah-targets">السور المستهدفة</label>
+        <select id="surah-targets" multiple size="6" (change)="selectSurahs($event)">
+          @for (surah of surahOptions(); track surah.number) {
+            <option
+              [value]="surah.number"
+              [selected]="draft().surahIds.includes(surah.number + '')"
+            >
+              {{ surah.number }}. {{ surah.name }}
+            </option>
+          }
+        </select>
+        @if (scheduleForm.surahIds().touched()) {
+          @for (error of scheduleForm.surahIds().errors(); track error.kind) {
+            <p class="field-error">{{ error.message }}</p>
+          }
+        }
+      } @else {
+        <label for="juz-targets">الأجزاء المستهدفة</label>
+        <select id="juz-targets" multiple size="6" (change)="selectJuz($event)">
+          @for (juzNumber of juzNumbers; track juzNumber) {
+            <option [value]="juzNumber" [selected]="draft().juzIds.includes(juzNumber + '')">
+              الجزء {{ juzNumber }}
+            </option>
+          }
+        </select>
+        @if (scheduleForm.juzIds().touched()) {
+          @for (error of scheduleForm.juzIds().errors(); track error.kind) {
+            <p class="field-error">{{ error.message }}</p>
+          }
+        }
+      }
+    </fieldset>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="daily-goal">الهدف اليومي بالآيات</label>
+        <input id="daily-goal" type="number" [formField]="scheduleForm.dailyAyahGoal" />
+      </div>
+      <div class="field">
+        <label for="reminder-time">وقت التذكير</label>
+        <input id="reminder-time" type="time" [formField]="scheduleForm.reminderTime" />
+      </div>
+    </div>
+
+    <fieldset>
+      <legend>أيام الأسبوع</legend>
+      <label><input type="checkbox" [formField]="scheduleForm.days.sunday" /> الأحد</label>
+      <label><input type="checkbox" [formField]="scheduleForm.days.monday" /> الإثنين</label>
+      <label><input type="checkbox" [formField]="scheduleForm.days.tuesday" /> الثلاثاء</label>
+      <label><input type="checkbox" [formField]="scheduleForm.days.wednesday" /> الأربعاء</label>
+      <label><input type="checkbox" [formField]="scheduleForm.days.thursday" /> الخميس</label>
+      <label><input type="checkbox" [formField]="scheduleForm.days.friday" /> الجمعة</label>
+      <label><input type="checkbox" [formField]="scheduleForm.days.saturday" /> السبت</label>
+      @if (scheduleForm.days().touched()) {
+        @for (error of scheduleForm.days().errors(); track error.kind) {
+          <p class="field-error">{{ error.message }}</p>
+        }
+      }
+    </fieldset>
+
+    <button type="submit">حفظ الخطة</button>
+  </form>
+
+  @if (plans().length > 0) {
+    <section class="plan-list" aria-labelledby="plans-title">
+      <h2 id="plans-title">الخطط</h2>
+      <ul>
+        @for (plan of plans(); track plan.id) {
+          <li>
+            <span>{{ plan.title }}</span>
+            <span>{{ plan.trackLabel }}</span>
+            <button type="button" [disabled]="plan.isActive" (click)="activate(plan.id)">
+              {{ plan.isActive ? 'الخطة النشطة' : 'تفعيل' }}
+            </button>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</section>

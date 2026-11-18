@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+<defs>
+<linearGradient id="cg1" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#d4a574"/>
+<stop offset="50%" stop-color="#c9a96e"/>
+<stop offset="100%" stop-color="#b8860b"/>
+</linearGradient>
+<linearGradient id="cg2" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#c9a96e"/>
+<stop offset="100%" stop-color="#96722e"/>
+</linearGradient>
+</defs>
+<!-- Outer corner frame lines -->
+<path d="M5,2 L78,2" stroke="url(#cg1)" stroke-width="1.2" fill="none"/>
+<path d="M2,5 L2,78" stroke="url(#cg1)" stroke-width="1.2" fill="none"/>
+<path d="M8,6 L75,6" stroke="url(#cg2)" stroke-width="0.5" fill="none" opacity="0.6"/>
+<path d="M6,8 L6,75" stroke="url(#cg2)" stroke-width="0.5" fill="none" opacity="0.6"/>
+<!-- Corner interlacing knot -->
+<g fill="none" stroke="url(#cg1)" stroke-width="1">
+<!-- Main corner curve -->
+<path d="M2,2 Q2,2 2,2" stroke-width="0"/>
+<!-- Outer arabesque arc -->
+<path d="M15,2 Q2,2 2,15" stroke-width="1.5" stroke="#c9a96e"/>
+<!-- Inner arabesque arc -->
+<path d="M12,6 Q6,6 6,12" stroke-width="0.8" stroke="#c9a96e" opacity="0.7"/>
+<!-- Interlace loops at corner -->
+<path d="M2,22 Q-2,12 8,6" stroke-width="0.8" stroke="#c9a96e" opacity="0.6"/>
+<path d="M22,2 Q12,-2 6,8" stroke-width="0.8" stroke="#c9a96e" opacity="0.6"/>
+</g>
+<!-- Decorative corner rosette -->
+<g transform="translate(16,16)" fill="#c9a96e">
+<!-- 8-pointed star at corner -->
+<polygon points="0,-8 2,-2 8,0 2,2 0,8 -2,2 -8,0 -2,-2" opacity="0.7"/>
+<polygon points="0,-5 1.3,-1.3 5,0 1.3,1.3 0,5 -1.3,1.3 -5,0 -1.3,-1.3" fill="url(#cg1)" opacity="0.9"/>
+<circle r="2" fill="#c9a96e" opacity="0.8"/>
+</g>
+<!-- Side geometric patterns along top edge -->
+<g fill="#c9a96e" opacity="0.5">
+<!-- Diamond chain along top -->
+<polygon points="30,2 32,0 34,2 32,4"/>
+<polygon points="42,2 44,0 46,2 44,4"/>
+<polygon points="54,2 56,0 58,2 56,4"/>
+<polygon points="66,2 68,0 70,2 68,4"/>
+</g>
+<!-- Side geometric patterns along left edge -->
+<g fill="#c9a96e" opacity="0.5">
+<polygon points="2,30 0,32 2,34 4,32"/>
+<polygon points="2,42 0,44 2,46 4,44"/>
+<polygon points="2,54 0,56 2,58 4,56"/>
+<polygon points="2,66 0,68 2,70 4,68"/>
+</g>
+<!-- Inner corner flourish curves -->
+<g fill="none" stroke="#c9a96e" opacity="0.4" stroke-width="0.6">
+<!-- Arabesque vines extending from corner -->
+<path d="M24,10 Q30,8 36,10 Q40,14 38,20"/>
+<path d="M10,24 Q8,30 10,36 Q14,40 20,38"/>
+<!-- Leaf shapes -->
+<path d="M34,10 Q36,7 38,10 Q36,13 34,10Z" fill="#c9a96e" opacity="0.3"/>
+<path d="M10,34 Q7,36 10,38 Q13,36 10,34Z" fill="#c9a96e" opacity="0.3"/>
+</g>
+<!-- Connecting dot accents -->
+<g fill="#c9a96e" opacity="0.5">
+<circle cx="26" cy="6" r="1"/>
+<circle cx="6" cy="26" r="1"/>
+<circle cx="38" cy="6" r="0.8"/>
+<circle cx="6" cy="38" r="0.8"/>
+<circle cx="50" cy="4" r="0.6"/>
+<circle cx="4" cy="50" r="0.6"/>
+<circle cx="62" cy="3" r="0.5"/>
+<circle cx="3" cy="62" r="0.5"/>
+</g>
+<!-- Thin inner frame lines fading out -->
+<path d="M22,10 L70,10" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
+<path d="M10,22 L10,70" stroke="#c9a96e" stroke-width="0.3" opacity="0.3"/>
+</svg>

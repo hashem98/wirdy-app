@@ -1,0 +1,57 @@
+nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.6rem 1rem;
+  background: var(--color-bg-nav);
+  border-bottom: 2px solid var(--color-gold-dark);
+  font-family: var(--font-ui);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-inline-end: auto;
+  min-height: 2.75rem;
+  color: var(--color-gold);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.brand img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+}
+
+a:not(.brand) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding-inline: 1rem;
+  border-radius: var(--radius-md);
+  color: var(--color-text-on-dark-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+}
+
+a:not(.brand):hover {
+  color: var(--color-gold-light);
+}
+
+a:not(.brand).is-active {
+  background: rgba(201, 169, 110, 0.15);
+  color: var(--color-gold);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+a:not(.brand):focus-visible,
+.brand:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}

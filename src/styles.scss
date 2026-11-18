@@ -1,0 +1,74 @@
+/* ───────────────────── Design Tokens ───────────────────── */
+:root {
+  /* Navy / Dark palette (inspired by reference mandala image) */
+  --color-bg-deep: #1e293b;
+  --color-bg-nav: #162032;
+  --color-bg-page: #faf7f0;
+  --color-bg-mushaf: #fffdf6;
+  --color-bg-card: #fffdf8;
+
+  /* Gold / Copper accent (from the mandala stars) */
+  --color-gold: #c9a96e;
+  --color-gold-light: #d4b87a;
+  --color-gold-dark: #a68542;
+  --color-copper: #b87333;
+
+  /* Text */
+  --color-text: #1c1917;
+  --color-text-muted: #57534e;
+  --color-text-on-dark: #e8e0d4;
+  --color-text-on-dark-muted: #a89f94;
+
+  /* Borders & ornamental */
+  --color-border: #ddd4c4;
+  --color-border-dark: #8a8175;
+  --color-ornament: #c9a96e;
+  --color-ornament-dark: #96784a;
+
+  /* Interactive */
+  --color-primary: #1e293b;
+  --color-primary-light: #334155;
+  --color-accent: #c9a96e;
+  --color-focus: #c9a96e;
+  --color-error: #8f1d1d;
+  --color-success: #145c3a;
+
+  /* Typography */
+  --font-ui: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+  --font-quran: 'Amiri Quran', 'Amiri', 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+  --font-arabic: 'Amiri', 'Noto Naskh Arabic', serif;
+
+  /* Border radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* ───────────────────── Global Reset ───────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-page);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ───────────────── Scrollbar Styling ───────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold-dark);
+  border-radius: 3px;
+}

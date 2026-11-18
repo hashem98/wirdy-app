@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 20">
+<defs>
+<linearGradient id="bl" x1="0%" y1="50%" x2="100%" y2="50%">
+<stop offset="0%" stop-color="#c9a96e" stop-opacity="0"/>
+<stop offset="20%" stop-color="#c9a96e" stop-opacity="0.8"/>
+<stop offset="50%" stop-color="#c9a96e" stop-opacity="1"/>
+<stop offset="80%" stop-color="#c9a96e" stop-opacity="0.8"/>
+<stop offset="100%" stop-color="#c9a96e" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="bl2" x1="0%" y1="50%" x2="100%" y2="50%">
+<stop offset="0%" stop-color="#b8860b" stop-opacity="0"/>
+<stop offset="30%" stop-color="#b8860b" stop-opacity="0.5"/>
+<stop offset="50%" stop-color="#d4a574" stop-opacity="0.6"/>
+<stop offset="70%" stop-color="#b8860b" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#b8860b" stop-opacity="0"/>
+</linearGradient>
+</defs>
+<!-- Main center line -->
+<line x1="20" y1="10" x2="280" y2="10" stroke="url(#bl)" stroke-width="0.8"/>
+<!-- Thin parallel lines -->
+<line x1="40" y1="7" x2="260" y2="7" stroke="url(#bl2)" stroke-width="0.3"/>
+<line x1="40" y1="13" x2="260" y2="13" stroke="url(#bl2)" stroke-width="0.3"/>
+<!-- Center diamond/star ornament -->
+<g transform="translate(150,10)" fill="#c9a96e">
+<polygon points="0,-5 2,-1 5,0 2,1 0,5 -2,1 -5,0 -2,-1" opacity="0.9"/>
+<circle r="1.5" fill="#c9a96e"/>
+</g>
+<!-- Side ornaments -->
+<g fill="#c9a96e" opacity="0.7">
+<!-- Left side arabesque curves -->
+<path d="M60,10 Q70,5 80,10 Q70,15 60,10Z" fill="none" stroke="#c9a96e" stroke-width="0.5"/>
+<circle cx="70" cy="10" r="1" fill="#c9a96e"/>
+<!-- Right side arabesque curves -->
+<path d="M220,10 Q230,5 240,10 Q230,15 220,10Z" fill="none" stroke="#c9a96e" stroke-width="0.5"/>
+<circle cx="230" cy="10" r="1" fill="#c9a96e"/>
+</g>
+<!-- Small diamonds along the line -->
+<g fill="#c9a96e" opacity="0.5">
+<polygon points="100,10 102,8.5 104,10 102,11.5" />
+<polygon points="120,10 122,8.5 124,10 122,11.5" />
+<polygon points="176,10 178,8.5 180,10 178,11.5" />
+<polygon points="196,10 198,8.5 200,10 198,11.5" />
+</g>
+<!-- Scroll terminals -->
+<g stroke="#c9a96e" fill="none" opacity="0.6">
+<path d="M20,10 Q15,6 18,3" stroke-width="0.6"/>
+<path d="M20,10 Q15,14 18,17" stroke-width="0.6"/>
+<path d="M280,10 Q285,6 282,3" stroke-width="0.6"/>
+<path d="M280,10 Q285,14 282,17" stroke-width="0.6"/>
+</g>
+</svg>
